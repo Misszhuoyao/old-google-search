@@ -1,0 +1,55 @@
+$(function(){
+	var searchInput = $(document).find("input[type='text']");
+	//联想
+	$(document).bind('click',function(){
+		$('.suggest').hide();
+	});
+	searchInput.unbind('keydown').bind('keydown',function(e){
+		if(e.keyCode ==  38 || e.keyCode == 40 || e.keyCode == 13){
+			if($('.suggest').css('display') != 'none'){
+				var index =$('.suggest li').indexOf($('.suggest li.selected').get());
+				if(e.keyCode == 38 || e.keyCode == 40){
+					var nextIndex = 0;
+					if(index == -1){
+						if(e.keyCode == 38){
+							nextIndex = $('.suggest li').length - 1;
+						}
+					}else{
+						nextIndex = e.keyCode == 38 ? (index - 1) : (index + 1);
+					}
+					
+					$('.suggest li').removeClass('selected');
+					var nextObj = $('.suggest li')[nextIndex];
+					if(typeof nextObj != 'undefined'){
+						$(nextObj).addClass('selected');
+						searchInput.val($(nextObj).attr('keyword'));
+					}
+				}else if(e.keyCode ==  13){
+					searchInput.get().focus();
+					$('.suggest').hide();
+					setTimeout(function(){
+						$("#searchForm").get().submit();
+					},200);
+					return false;
+				}
+			}
+		}
+	});
+	searchInput.unbind('keyup').bind('keyup',function(e){
+		if(e.keyCode ==  38 || e.keyCode == 40 || e.keyCode == 13 || e.keyCode==27){
+			if(e.keyCode==27){
+				$('.suggest').hide();
+			}
+			return false;
+		}
+		var self = $(this);
+		var keyword = self.val();
+		getSuggestion(self,keyword);
+	});
+	
+	setTimeout(function(){
+		if(window.location.hash == "#show"){
+			searchInput.get().focus();
+		}
+	},200);
+});

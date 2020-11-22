@@ -1,0 +1,89 @@
+@charset "utf-8";
+/*通用*/
+html {
+	overflow-y:auto
+}
+body {
+	font:12px arial;
+	text-align:center;
+	background:#FFF;
+}
+body,p,form,ul,li {
+	margin:0;
+	padding:0;
+	list-style:none
+}
+img {
+	border:0
+}
+a {
+	color:#00c
+}
+a:active {
+	color:#f60
+}
+input {
+	border:0;
+	padding:0;
+}
+.clear{
+	clear:both;
+}
+
+/*框架*/
+.main {
+	width:100%;
+	margin: 20px auto;
+}
+#logo {
+	vertical-align:top;
+	margin-bottom: 13px
+}
+.searchMain {
+	text-align:left;
+	margin: auto;
+	width: 600px;	
+}
+.searchMain div.searchMainBody {
+	margin: auto;
+	width: 530px;
+	padding-top: 6px;	
+}
+div.suggest {
+	border: 1px solid #999;
+	position: absolute;
+	overflow-y: auto;
+	overflow-x: hidden;
+	display: none;
+	padding-top: 0px;
+	z-index: 10;
+	height: 170px;
+}
+div.suggest li{
+	height: 24px;
+	line-height: 24px;
+	background: #FFF;
+	text-align: left;
+	padding: 0 6px;
+	cursor:pointer; 
+	color:#666;
+	overflow: hidden;
+	font-size: 14px;
+	position: relative;
+}
+div.suggest li span{
+	position: absolute;
+	right: 0px;
+	top: 0px;
+	color: #093;
+}
+div.suggest li label {
+	font-weight: bold;
+}
+div.suggest li.selected{
+	background:#D8D8D8; 
+	color:#000;
+}
+div.suggest li.close{
+	text-align:right;
+}
